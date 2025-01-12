@@ -1,0 +1,512 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ガイド情報セクション -->
+<div class="guide-section">
+    <!-- お支払方法 -->
+    <div class="guide-item">
+        <h2>お支払方法 <span class="more-link">詳しく見る</span></h2>
+            <p>PayPay・銀行振込・クレジットカード・コンビニ決済など、お客様に合わせたお支払い方法をご用意しております。</p>
+
+        <!-- 特典情報 -->
+        <div class="benefit-box">
+            <h3 class="benefit-title">お得な特典！</h3>
+            <p class="benefit-text">
+                銀行振込（前払い）で、会員登録（後述）かつ<strong>10,800円以上の購入</strong>をしていただいたお客様には、<strong>300ポイント</strong>をプレゼント！
+            </p>
+        </div>
+
+        <!-- 支払い方法リスト -->
+        <div class="payment-methods">
+            <!-- PayPay -->
+            <div class="payment-method">
+                <h3>PayPay決済 <span class="tag-new">NEW!</span></h3>
+                <ul class="payment-features">
+                    <li><strong>14時まで</strong>のご注文で即日配送</li>
+                    <li>スマートフォンで簡単決済</li>
+                </ul>
+                <div class="payment-detail">
+                    <p class="detail-title">【PayPay決済】</p>
+                    <p>スマートフォンでQRコードを読み取ってお支払い</p>
+                </div>
+            </div>
+
+            <!-- 銀行振込 -->
+            <div class="payment-method">
+                <h3>銀行振込（前払い） <span class="tag-benefit">お得！</span></h3>
+                <ul class="payment-features">
+                    <li>注文後<strong>3日以内</strong>にお振込み</li>
+                    <li>入金確認後に商品出荷</li>
+                    <li>3日超過はキャンセル扱い</li>
+                </ul>
+                <div class="payment-detail">
+                    <p class="detail-title">【銀行ネット決済】</p>
+                    <p>ゆうちょ銀行、ネットバンク、地方銀行、JAバンク等全国の金融機関でご利用可能</p>
+                </div>
+            </div>
+
+            <!-- クレジット -->
+            <div class="payment-method">
+                <h3>クレジット決済</h3>
+                <ul class="payment-features">
+                    <li><strong>14時まで</strong>のご注文で即日配送</li>
+                    <li>配送日の希望は伝達メッセージ欄に記入</li>
+                </ul>
+                <div class="payment-detail">
+                    <p class="detail-title">【クレジットカード】</p>
+                    <p>VISA、MasterCard、JCB、American Expressでご利用可能</p>
+                </div>
+            </div>
+
+            <!-- コンビニ -->
+            <div class="payment-method">
+                <h3>コンビニ決済</h3>
+                <ul class="payment-features">
+                    <li><strong>14時まで</strong>の入金で即日配送</li>
+                    <li>入金確認後出荷開始</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- お届けについて -->
+     <!-- ご利用ガイドのお支払方法のidに飛ばす -->
+    <div class="guide-item">
+        <h2>お届けについて <span class="more-link">詳しく見る</span></h2>
+        <!-- 内容は省略 -->
+    </div>
+
+    <!-- 返品について -->
+    <div class="guide-item">
+        <h2>返品・交換について <span class="more-link">詳しく見る</span></h2>
+        <!-- 内容は省略 -->
+
+        <!--カレンダーここから-->
+        <div>
+            <!--今月のカレンダータイトル-->
+            <h2><{$calendar1.year}>年<{$calendar1.month}>月の営業日カレンダー</h2>
+            <!--今月のカレンダーテーブル-->
+            <{$calendar1.html}>
+        
+            <div>
+                <!--今月のカレンダー下 今日テキスト-->
+                <span style="color:#57886C">■</span>今日
+            </div>
+            <{section name=i loop=$calendar1.date_list}>
+                <div>
+                    <!--今月のカレンダー下 特定日テキスト-->
+                    <span style="color:<{$calendar1.date_list[i].color}>;">■</span><{$calendar1.date_list[i].description}>
+                </div>
+            <{/section}>
+            <!--今月の特定日の設定-->
+            <{section name=i loop=$calendar1.date_list}>
+                <{section name=j loop=$calendar1.date_list[i].day_list}>
+                    <input type="hidden" class="dayList" data-month="1" data-day="<{$calendar1.date_list[i].day_list[j]}>" data-color="<{$calendar1.date_list[i].color}>">
+                <{/section}>
+            <{/section}>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<style>
+    
+/* デフォルト（スマホ表示） */
+/* ガイドセクション全体 */
+.guide-section {
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* PC表示 */
+@media (min-width: 1200px) {
+    .guide-section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+        /* すべての項目を均等に配置する */
+        .guide-item {
+        grid-column: auto; /* デフォルト配置 */
+    }
+        /* 必要ならば横幅いっぱいにする項目 */
+        .guide-item.full-width {
+        grid-column: 1 / -1;
+    }
+}
+
+/* タブレット用 (例: 793px ~ 1199px) */
+@media (min-width: 793px) and (max-width: 1199px) {
+    .guide-section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+    
+    .payment-method.full-width {
+        grid-column: 1 / -1; 
+    }
+}
+
+/* ガイドアイテム */
+.guide-item {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box; /* パディングを幅に含める */
+}
+
+/* 見出し */
+.guide-item h2 {
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+
+}
+
+/* 詳しく見るリンク */
+.more-link {
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* 支払い方法 */
+.payment-methods .overview {
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.payment-method {
+    margin-bottom: 20px;
+}
+
+.payment-method h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+
+.sub-text {
+    font-size: 13px;
+    color: #666;
+}
+
+.service-name {
+    color: #c00;
+    margin-bottom: 5px;
+}
+
+.payment-logo {
+    height: 30px;
+    width: auto;
+    margin-top: 10px;
+}
+
+/* スマホ表示 */
+@media (max-width: 768px) {
+    .guide-section {
+        padding: 15px;
+    }
+
+    .guide-item {
+        padding: 12px;
+        background: transparent;
+    }
+
+    .payment-method {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .payment-method:last-child {
+        border-bottom: none;
+    }
+
+    /* 支払い方法のロゴ調整 */
+    .payment-logo {
+        height: 25px;
+    }
+}
+
+
+.guide-section {
+        width: 100%;
+    max-width: 100%;  /* これを追加 */
+    padding: 15px;
+    overflow-x: hidden;  /* 横スクロール防止 */    }
+    
+    .guide-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        font-weight: normal;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .more-link {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    /* 特典ボックス */
+    .benefit-box {
+        background: #fff3cd;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .benefit-title {
+        color: #856404;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .benefit-text {
+        color: #856404;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    /* 支払い方法 */
+    .payment-method {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .payment-method h3 {
+        font-size: 15px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .tag-new {
+        background: rgba(255,0,0,0.1);
+        color: #f00;
+        padding: 2px 8px;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+    
+    .tag-benefit {
+        background: #fff3cd;
+        color: #856404;
+        padding: 2px 8px;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+    
+    .payment-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 15px 0;
+    }
+    
+    .payment-features li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 8px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .payment-features li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+    }
+    
+    .payment-detail {
+        background: rgba(0,0,0,0.03);
+        padding: 12px;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+    
+    .detail-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+    
+    .payment-detail p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    /* レスポンシブ対応 */
+    @media (min-width: 769px) {
+        .guide-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    
+        .payment-methods {
+            display: grid;
+            /* grid-template-columns: repeat(2, 1fr); */
+            gap: 20px;
+        }
+    
+        .payment-method {
+            margin-bottom: 0;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+    }
+
+
+
+
+/* カレンダー関連 */
+/* カレンダーのサイズ設定 */
+.makeshop-calendar1,
+.makeshop-calendar2 {
+width: 100%;
+margin: 0 auto 16px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+/* テキスト位置・罫線設定 */
+.makeshop-calendar1 th,
+.makeshop-calendar1 td,
+.makeshop-calendar2 th,
+.makeshop-calendar2 td {
+box-sizing: border-box;
+text-align: center;
+border: 1px solid #e6e6e6;
+}
+
+/* 【曜日】テキストの太さ・背景設定 */
+.makeshop-calendar1 th,
+.makeshop-calendar2 th {
+background: #dcdcdc;
+font-weight: bold;
+padding: 10px 0;
+}
+
+/* 【日付】テキストの太さ・背景設定 */
+.makeshop-calendar1 td,
+.makeshop-calendar2 td {
+background: #fff;
+font-weight: bold;
+padding: 25px 0;
+}
+
+/* 【今日】テキストの太さ・背景設定 */
+.makeshop-calendar1 td.today,
+.makeshop-calendar2 td.today {
+background-color: #57886C;
+color: #fff;
+}
+
+/* 【日曜日】の設定 */
+.makeshop-calendar1 th.sunday,
+.makeshop-calendar2 th.sunday {
+color: #fff;
+background: #f08080;
+}
+
+/* 【日曜日】日付の設定 */
+.makeshop-calendar1 tbody td.sunday,
+.makeshop-calendar2 tbody td.sunday {
+background: #f0808073;
+}
+
+/* 【土曜日】の設定 */
+.makeshop-calendar1 th.saturday,
+.makeshop-calendar2 th.saturday {
+color: #fff;
+background: #6495ed;
+}
+
+/* 【土曜日】日付の設定 */
+.makeshop-calendar1 tbody td.saturday,
+.makeshop-calendar2 tbody td.saturday {
+background: #6495ed36;
+}
+
+/* 【月曜日】の設定 */
+.monday {
+color: black;
+}
+
+/* 【火曜日】の設定 */
+.tuesday {
+color: black;
+}
+
+/* 【水曜日】の設定 */
+.wednesday {
+color: black;
+}
+
+/* 【木曜日】の設定 */
+.thursday {
+color: black;
+}
+
+/* 【金曜日】の設定 */
+.friday {
+color: black;
+}
+@media screen and (max-width: 640px){
+.makeshop-calendar1,
+.makeshop-calendar2 {
+width: 100%;
+}
+.makeshop-calendar1 th,
+.makeshop-calendar1 td,
+.makeshop-calendar2 th,
+.makeshop-calendar2 td {
+font-size: 14px;
+}
+}
+
+
+
+
+</style>
+
+
+<script>
+
+$(function(){
+    $('.dayList').each(function(){
+        var month = $(this).attr('data-month');
+        var day = $(this).attr('data-day');
+        var color = $(this).attr('data-color');
+ 
+        $('.makeshop-calendar' + month +' .day' + day).css({
+            'background-color': color,
+            'color': '#fff',
+            'font-weight': 'bold'
+        });
+ 
+    });
+});
+
+</script>
